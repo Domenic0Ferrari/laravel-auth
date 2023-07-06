@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Posts</title>
+    @vite('resources/js/app.js')
 </head>
 <body>
     @include('admin.includes.header')
-    <main>
-        @yield('contents')
-    </main>
+    <div class="container">
+        <main>
+            @yield('contents')
+        </main>
+    </div>
     @include('admin.includes.footer')
 </body>
 </html>
