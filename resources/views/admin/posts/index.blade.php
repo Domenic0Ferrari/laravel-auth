@@ -1,7 +1,7 @@
 @extends('admin.layouts.base')
 
 @section('contents')
-<h1 class="text-center mt-3 mb-3">Post</h1>
+<h1 class="text-center mt-3 mb-3">myPost</h1>
 
 {{-- @if (session('delete_success'))
     <div class="alert alert-danger">
@@ -41,7 +41,7 @@
     </tbody>
 </table>  
 {{ $posts->links() }} --}}
-<div class="d-flex gap-2">
+{{-- <div class="d-flex gap-2">
 @foreach ($posts as $post)
     <div class="card" style="width: 18rem;">
         <img src="{{ $post->url_image }}" class="card-img-top" alt="{{ $post->title }}">
@@ -62,6 +62,27 @@
     </div>
     @endforeach
 </div>
-    {{ $posts->links() }}
+    {{ $posts->links() }} --}}
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+            <th scope="col">Github_link</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach ($myPosts as $myPost)
+            <tr>
+              <th scope="row">{{ $myPost->id }}</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            @endforeach
+        </tbody>
+      </table>
 
 @endsection

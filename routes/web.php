@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Guest\PageController as GuestPageController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\myPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,11 @@ Route::get('/', [GuestPageController::class, 'home'])->name('guest.home');
 Route::middleware('auth', 'verified')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/admin', [AdminPageController::class, 'dashboard'])->name('dashboard');
     Route::resource('posts', PostController::class);
+});
+
+Route::middleware('auth', 'verified')->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/admin', [AdminPageController::class, 'dashboard'])->name('dashboard');
+    Route::resource('myPosts', myPostController::class);
 });
 
 Route::middleware('auth')
