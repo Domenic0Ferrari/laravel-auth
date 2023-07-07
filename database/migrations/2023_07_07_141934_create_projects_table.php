@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('author', 30);
             $table->string('url_github', 200);
             $table->text('description');
+            $table->string('languages', 50);
             // end my-projects
             $table->timestamps();
         });
