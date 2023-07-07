@@ -2,15 +2,17 @@
 
 @section('contents')
 
-<h1>Inserisci un nuovo Post</h1>
-<form method="POST" action="{{ route('admin.posts.store') }}" novalidate>
+<h1>Modifica un Post</h1>
+<form method="POST" action="{{ route('admin.posts.update', ['post' => $post]) }}" novalidate>
     @csrf
+    @method('PUT')
     <div class="mb-3">
         <label for="title" class="form-label">Titolo</label>
         <input type="text" 
         class="form-control @error('title') is-invalid @enderror" id="title" 
         name="title" 
-        value="{{old('title')}}">
+        value="{{old('title', $post->title)}}">
+        {{-- passare il secondo argomento alla funzione old così che il campo esca già precompilato --}}
         <div class="invalid-feedback">
             @error('title')
             {{ $message }}
@@ -24,7 +26,7 @@
         class="form-control @error('url_image') is-invalid @enderror"
         id="url_image"
         name="url_image"
-        value="{{old('url_image')}}">
+        value="{{old('url_image', $post->url_image)}}">
         <div class="invalid-feedback">
             @error('url_image')
             {{ $message }}
@@ -37,7 +39,7 @@
         <textarea class="form-control @error ('content') is-invalid @enderror" 
         name="content" 
         id="content"
-        rows="3">{{ old('content') }}</textarea>
+        rows="3">{{ old('content', $post->content) }}</textarea>
         <div class="invalid-feedback">
             @error('content')
             {{ $message }}
