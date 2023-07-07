@@ -21,9 +21,10 @@ Route::get('/', [GuestPageController::class, 'home'])->name('guest.home');
 
 // Route::get('/admin', [AdminPageController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('admin.dashboard');
 
-Route::middleware('auth', 'verified')->name('admin.')->prefix('admin')->group(function () {
-    Route::get('/admin', [AdminPageController::class, 'dashboard'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', [AdminPageController::class, 'dashboard'])->name('dashboard');
     Route::resource('posts', PostController::class);
+    Route::resource('projects', ProjectController::class);
 });
 
 Route::middleware('auth')

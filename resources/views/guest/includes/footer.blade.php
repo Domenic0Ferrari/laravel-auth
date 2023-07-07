@@ -1,3 +1,3 @@
 <footer>
-    <h1>Sono il footer del Guest</h1>
+    <h1 class="text-center">Sono il footer del Guest</h1>
 </footer>

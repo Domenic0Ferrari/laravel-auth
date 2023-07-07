@@ -1,3 +1,3 @@
 <header>
-    <h1>Sono l'header del Guest</h1>
+    <h1 class="text-center">Sono l'header del Guest</h1>
 </header>

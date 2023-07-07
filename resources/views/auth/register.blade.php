@@ -7,7 +7,7 @@
         <label for="name" class="form-label">Name</label>
         <input 
         id="name" 
-        class="block mt-1 w-full" 
+        class="form-control" 
         type="text" 
         name="name" 
         required autofocus autocomplete="name"
