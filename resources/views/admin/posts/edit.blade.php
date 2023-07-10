@@ -21,6 +21,27 @@
     </div>
 
     <div class="mb-3">
+        <label 
+        for="category"
+        class="form-label">Category</label>
+        <select
+        class="form-select
+        @error('category_id') is invalid @enderror" aria-label="category"
+        id="category"
+        name="category_id">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}" @if (old('category_id', $post->category->id) == $category->id) selected @endif>{{ $category->name }}</option>
+                {{-- utilizzare i due uguali e non i tre uguali altrimenti non funziona...fare attenzione --}}
+            @endforeach
+        </select>
+        <div class="invalid-feedback">
+            @error('category_id')
+            {{ $message }}
+            @enderror
+        </div>
+    </div>
+
+    <div class="mb-3">
         <label for="url_image" class="form-label">Immagine</label>
         <input type="url"
         class="form-control @error('url_image') is-invalid @enderror"

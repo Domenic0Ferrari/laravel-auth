@@ -17,6 +17,7 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Titolo</th>
+            <th scope="col">Category</th>
             <th scope="col">Image</th>
             <th scope="col">Actions</th>
         </tr>
@@ -26,6 +27,7 @@
         <tr>
             <th scope="row">{{ $post->id }}</th>
             <td>{{ $post->title }}</td>
+            <td><a href="{{ route('admin.categories.show', ['category' => $post->category]) }}"></a>{{ $post->category->name }}</td>
             <td>{{ $post->url_image }}</td>
             <td>
                 <a href="{{ route('admin.posts.show', ['post' => $post]) }}" class="btn btn-primary">View</a>
