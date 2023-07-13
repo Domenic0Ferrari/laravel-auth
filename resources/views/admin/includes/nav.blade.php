@@ -19,29 +19,29 @@
                     <a class="nav-link" aria-current="page" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Posts
-                        </a>                   
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('admin.posts.index') }}">Index</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.posts.create') }}">Add</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
-                        </a>                   
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('admin.categories.index') }}">Index</a></li>
-                            {{-- <li><a class="dropdown-item" href="{{ route('admin.categories.create') }}">Add</a></li> --}}
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Projects
                         </a>                   
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('admin.projects.index') }}">Index</a></li>
-                            {{-- <li><a class="dropdown-item" href="{{ route('admin.posts.create') }}">Add</a></li> --}}
+                            <li><a class="dropdown-item" href="{{ route('admin.projects.create') }}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Type
+                        </a>                   
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admin.types.index') }}">Index</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.types.create') }}">Add</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Technology
+                        </a>                   
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('admin.technologies.index') }}">Index</a></li>
+                            <li><a class="dropdown-item" href="{{ route('admin.technologies.create') }}">Add</a></li>
                         </ul>
                     </li>
                 </li>

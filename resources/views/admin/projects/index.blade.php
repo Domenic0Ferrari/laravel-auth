@@ -3,22 +3,25 @@
 @section('contents')
 <h1 class="text-center mt-3 mb-3">My Project</h1>
 
-{{-- @if (session('delete_success'))
+@if (session('delete_success'))
 @php
-    $post = session('delete_success')
+    $project = session('delete_success')
 @endphp
     <div class="alert alert-danger">
-        Il post "{{ $post->title }}" è stato eliminato per sempre
+        Il progetto "{{ $project->title }}" è stato eliminato per sempre!
     </div>
-@endif --}}
+@endif
 
 <table class="table">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
+            <th scope="col">Type</th>
+            <th scope="col">Technologies</th>
             <th scope="col">Author</th>
             <th scope="col">Link</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -26,23 +29,37 @@
         <tr>
             <th scope="row">{{ $project->id }}</th>
             <td>{{ $project->title }}</td>
-            <td>{{ $project->author}}</td>
-            <td><a href="{{ $project->url_github}}">{{ $project->url_github}}</a></td>
-            {{-- <td> --}}
-                {{-- <a href="{{ route('admin.projects.show', ['project' => $project]) }}" class="btn btn-primary">View</a> --}}
-                {{-- <a href="{{ route('admin.projects.edit', ['project' => $project]) }}" class="btn btn-warning">Edit</a> --}}
-                {{-- <button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $project->id }}"> --}}
-                    {{-- aggiungo data-id per passare data a js, inserirò qui l'identificatore...aggiugno codice js inn app.js --}}
-                    {{-- Delete --}}
-                {{-- </button> --}}
-                {{-- il button richiama il modal con data-bs-target --}}
-            {{-- </td> --}}
+            <td>
+                <a href="{{ route('admin.types.show', ['type' => $project->type]) }}">{{ $project->type->name }}</a>
+            </td>
+            {{-- <td>{{ implode(', ', $project->technologies->pluck('name')->all()) }}</td> --}}
+            <td>
+                @foreach ($project->technologies as $technology)
+                    <a href="{{ route('admin.technologies.show', ['technology' => $technology]) }}">{{ $technology->name }}</a> {{ !$loop->last ? ',' : '' }}
+                    {{-- @if(!$loop->last),@endif --}}
+                    {{-- la variabile loop la crea laravel quando in blade facciamo un ciclo, per inserire le virgole e quando siamo nell'ultima per non inserirla --}}
+                @endforeach
+            </td>
+            <td>{{ $project->author }}</td>
+            <td><a href="{{ $project->url_github}}">{{ $project->url_github }}</a></td>
+            <td>
+                <a href="{{ route('admin.projects.show', ['project' => $project]) }}" class="btn btn-primary">View</a>
+                <a href="{{ route('admin.projects.edit', ['project' => $project]) }}" class="btn btn-warning">Edit</a>
+                <button
+                type="button"
+                class="btn btn-danger js-delete-2"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteModal"
+                data-id="{{ $project->slug }}">
+                    Delete
+                </button>
+            </td>
         </tr>
         @endforeach
     </tbody>
 </table>  
 
-{{-- <div
+<div
 class="modal fade"
 id="deleteModal"
 data-bs-backdrop="static"
@@ -65,7 +82,7 @@ aria-hidden="true">
                 action="{{ route('admin.projects.destroy', ['project' => $project]) }}"
                 method="POST"
                 class="d-inline-block" 
-                id="confirm-delete">
+                id="confirm-delete-2">
                     @csrf
                     @method('delete')
                     <button class="btn btn-danger">Delete</button>
@@ -73,7 +90,7 @@ aria-hidden="true">
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
 {{ $projects->links() }}
 @endsection

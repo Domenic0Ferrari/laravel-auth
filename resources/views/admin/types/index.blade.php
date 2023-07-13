@@ -1,43 +1,51 @@
 @extends('admin.layouts.base')
 
 @section('contents')
-<h1 class="text-center mt-3 mb-3">Categories</h1>
+<h1 class="text-center mt-3 mb-3">Types</h1>
 
-{{-- @if (session('delete_success'))
+@if (session('delete_success'))
 @php
-    $post = session('delete_success')
+    $type = session('delete_success')
 @endphp
     <div class="alert alert-danger">
-        Il post "{{ $post->title }}" è stato eliminato per sempre
+        Il tipo "{{ $type->name }}" è stato eliminato per sempre!
     </div>
-@endif --}}
+@endif
 
 <table class="table">
     <thead>
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
+            <th scope="col">Count</th>
+            {{-- conteggio dei post associati --}}
             <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($categories as $category)
+        @foreach ($types as $type)
         <tr>
-            <th scope="row">{{ $category->id }}</th>
-            <td>{{ $category->name }}</td>
+            <th scope="row">{{ $type->id }}</th>
+            <td>{{ $type->name }}</td>
+            <td>{{ $type->projects->count() }}</td>
             <td>
-                <a href="{{ route('admin.categories.show', ['category' => $category]) }}" class="btn btn-primary">View</a>
-                {{-- <a href="{{ route('admin.categories.edit', ['category' => $category]) }}" class="btn btn-warning">Edit</a>
-                <button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ $categori->id }}">
+                <a href="{{ route('admin.types.show', ['type' => $type]) }}" class="btn btn-primary">View</a>
+                <a href="{{ route('admin.types.edit', ['type' => $type]) }}" class="btn btn-warning">Edit</a>
+                <button
+                type="button"
+                class="btn btn-danger js-delete"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteModal"
+                data-id="{{ $type->slug }}">
                     Delete
-                </button> --}}
+                </button>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>  
 
-{{-- <div
+<div
 class="modal fade"
 id="deleteModal"
 data-bs-backdrop="static"
@@ -57,10 +65,10 @@ aria-hidden="true">
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
                 <form
-                action="{{ route('admin.categories.destroy', ['categori' => $categori]) }}"
+                action="{{ route('admin.types.destroy', ['type' => $type]) }}"
                 method="POST"
                 class="d-inline-block" 
-                id="confirm-delete">
+                id="confirm-delete-3">
                     @csrf
                     @method('delete')
                     <button class="btn btn-danger">Delete</button>
@@ -68,6 +76,5 @@ aria-hidden="true">
             </div>
         </div>
     </div>
-</div> --}}
-
+</div>
 @endsection
